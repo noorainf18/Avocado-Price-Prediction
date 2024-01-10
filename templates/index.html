@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap" rel="stylesheet">
+    <title>Avocado Price Predictor</title>
+    <style>
+        body {
+            margin: 20px;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Poppins';
+            background-size: cover;
+            background-position: center;
+        }
+
+        h1 {
+            margin-bottom: 20px;
+            font-size: 20px;
+            text-align: center;
+        }
+
+        form {
+            width: 600px;
+            margin: 0 auto;
+            padding: 10px 30px 15px 30px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            background-color: #ffffff;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            opacity: 0.92;
+        }
+
+        label {
+            display: block;
+        }
+
+        input[type="number"] {
+            width: 100%;
+            padding: 6px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            box-sizing: border-box;
+        }
+
+        button[type="submit"] {
+            background-color: #4CAF50;
+            color: white;
+            width: 100%;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #45a049;
+        }
+
+        .result-box {
+            width: 96%;
+            margin-top: 10px;
+            padding: 10px 10px 15px 10px;
+            background-color: #ffffff;
+            border-radius: 5px;
+        }
+
+        p.predicted-price {
+            font-size: 18px;
+            background-color: #ffffff;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+
+<body style="background-image: url('{{ url_for('static', filename='/image3.avif') }}');">
+
+    <form method="POST" action="/">
+        <h1>AVOCADO PRICE PREDICTOR</h1>
+
+        <label for="PLU 4046">PLU 4046</label>
+        <input type="number" id="PLU 4046" name="PLU 4046" value="{{ request.form['PLU 4046'] }}"><br><br>
+
+        <label for="PLU 4225">PLU 4225</label>
+        <input type="number" id="PLU 4225" name="PLU 4225" value="{{ request.form['PLU 4225'] }}"><br><br>
+
+        <label for="PLU 4770">PLU 4770</label>
+        <input type="number" id="PLU 4770" name="PLU 4770" value="{{ request.form['PLU 4770'] }}"><br><br>
+
+        <label for="Small Bags">Small Bags</label>
+        <input type="number" id="Small Bags" name="Small Bags" value="{{ request.form['Small Bags'] }}"><br><br>
+
+        <label for="Large Bags">Large Bags</label>
+        <input type="number" id="Large Bags" name="Large Bags" value="{{ request.form['Large Bags'] }}"><br><br>
+
+        <label for="XLarge Bags">XLarge Bags</label>
+        <input type="number" id="XLarge Bags" name="XLarge Bags" value="{{ request.form['XLarge Bags'] }}"><br><br>
+
+        <label for="Year">Year</label>
+        <input type="number" id="Year" name="Year" value="{{ request.form['Year'] }}"><br><br>
+
+        <button type="submit">Price</button>
+
+        <div class="result-box">
+            {% if prediction %}
+                <p class="predicted-price">{{ prediction }}</p>
+            {% endif %}
+        </div>
+    </form>
+</body>
+</html>
